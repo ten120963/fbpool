@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Football Pool - Team List
+{% endblock %}
+
+{% block content %}
+
+	<h1>Football Pool - Team List</h1>
+
+	<br/>
+	
+	{% for item in team_menu_list %}
+    	<h5><a class="dropdown-item" href="{% url 'team_view' item %}">{{ item }}</a></h5>
+    {% endfor %}
+    
+
+{% endblock %}

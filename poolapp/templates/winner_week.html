@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Football Pool - Winner List
+{% endblock %}
+
+{% block content %}
+
+<h1>Football Pool - Winner List</h1>
+<br/>	
+  	<table class="table table-borderless">
+  	<thead>	
+    <tr>
+      <th scope="col">Week</th>  
+      <th scope="col">Team</th>  
+    </tr>
+  	</thead>
+
+  	<tbody> 	
+		{% for winner in all_winners %}			
+			<tr>	
+				<td>{{ winner.week}}</td>		
+				<td>{{ winner.team }}</td>
+			</tr>	
+							
+		{% endfor %}
+  	</tbody>
+
+{% endblock %}

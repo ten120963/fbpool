@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Football Pool - Edit Pick
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %} 
+	{% if user.id == pick.author.id %}	
+		<h1>Football Pool - Edit Pick</h1>
+		<br/><br/>
+		<div class="form-group">
+
+			<form method="POST">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<br/>
+				<button class="btn btn-secondary">Update</button>				
+				<button type="button" class="btn btn-secondary">
+				    <a href="{% url 'home' %}">Cancel</a>
+				</button>
+			</form>	
+
+		</div>
+
+		<script>		
+			var name = "{{ user.id }}";
+			document.getElementById("user_box").value = name
+		</script>
+	
+	{% else %}
+
+		You're not allowed here (and you know it)
+
+	{% endif %}	
+
+{% else %}
+
+	You're not allowed here (and you know it)
+
+{% endif %}
+
+{% endblock %}

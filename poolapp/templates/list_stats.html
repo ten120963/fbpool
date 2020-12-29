@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Football Pool - List Stats
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %} 
+
+	<h1>Football Pool - List Stats</h1>
+	<br/><br/>
+	
+	<!--	
+	{{ all_picks }}
+	{{ all_winners }}	
+	{{ pick_player }}
+	{{ pick_team }}	
+	{{ players }}
+	{{ team }}
+	{{ player }}
+	
+
+	{% for pick in picks_list %}
+		{{ pick }}
+	{% endfor %}
+	
+	<br/><br/>
+
+	{% for player in player_list %}
+		{{ player }}
+	{% endfor %}
+
+	<br/><br/>
+
+	{% for winner in winner_list %}
+		{{ winner }}
+	{% endfor %}
+	-->
+	
+	{% for status in status_list %}
+		{{ status }}
+	{% endfor %}
+	
+	{{ status_msg }}
+	
+{% else %}
+
+	You're not allowed here (and you know it)
+
+{% endif %}	
+
+{% endblock %}

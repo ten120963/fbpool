@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Football Pool - Home
+{% endblock %}
+
+{% block content %}
+
+<h1>Football Pool - Home</h1>
+<br/>
+<table class="table table-borderless">
+  	<thead>	
+    <tr>
+      <th scope="col">Name</th>      
+      <th scope="col">Status</th>   
+    </tr>
+  	</thead>
+
+  	<tbody> 	
+		{% for item in object_list %}			
+			<tr>					
+				<td><a href="{% url 'author_view' item.username %}">{{ item.first_name }} {{ item.last_name}}</a></td>  			
+				<td>{{ item.profile.status }}</td>  
+			</tr>	
+							
+		{% endfor %}
+  	</tbody>
+</table>  	
+	
+{% endblock %}

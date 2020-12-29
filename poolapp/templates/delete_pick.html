@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Football Pool - Delete Pick
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %} 
+	{% if user.id == pick.author.id %}
+		<h1>Football Pool - Delete Pick</h1>
+		<br/><br/>
+		<h3>Delete:</h3>
+		<h3>Week {{ pick.week }} - {{ pick.author.first_name }} {{ pick.author.last_name }} - {{ pick.team }}</h3>		
+
+		<br/>
+		<div class="form-group">
+
+			<form method="POST">
+				{% csrf_token %}
+				<strong>Are you Sure?</strong><br/><br/>
+				<button class="btn btn-secondary">Delete Pick</button>
+				<button type="button" class="btn btn-secondary">
+				    <a href="{% url 'home' %}">Cancel</a>
+				</button>
+			</form>	
+
+		</div>
+	{% else %}
+
+		You're not allowed here (and you know it)
+
+	{% endif %}		
+
+{% else %}
+
+	You're not allowed here (and you know it)
+
+{% endif %}		
+
+{% endblock %}

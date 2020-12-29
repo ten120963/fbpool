@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Football Pool - Add Pick
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %} 
+
+	<h1>Football Pool - Add Pick</h1>
+	<br/><br/>
+	<div class="form-group">
+
+		<form method="POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<br/>
+			<button class="btn btn-secondary">Add Pick</button>
+		</form>	
+
+	</div>
+
+	<script>		
+		var name = "{{ user.id }}";
+		document.getElementById("user_box").value = name
+	</script>
+
+{% else %}
+
+	You're not allowed here (and you know it)
+
+{% endif %}	
+
+{% endblock %}

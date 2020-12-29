@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Football Pool - Weeks
+{% endblock %}
+
+{% block content %}
+
+{% if week_posts %}
+
+	<h1>Football Pool - Week {{ week }}</h1>
+	<br/>	
+
+	<table class="table table-borderless">
+  	<thead>	
+    <tr>
+      <th scope="col">Week</th>      
+      <th scope="col">Name</th>
+      <th scope="col">Date</th>      
+      <th scope="col">Team</th>      
+      {% if user.is_authenticated %} 
+      	<th scope="col"></th> 
+      {% endif %}      	
+    </tr>
+  	</thead>
+
+  	<tbody> 	
+		{% for item in week_posts %}			
+			<tr>	
+				<td><a href="{% url 'week_view' item.week %}">{{ item.week}}</a></td>						
+				<td><a href="{% url 'author_view' item.author %}">{{ item.author.first_name }} {{ item.author.last_name }}</a></td>
+				<td>{{ item.pick_date}}</td>  
+				<td><a href="{% url 'team_view' item.team|slugify %}">{{ item.team }}</td>
+				{% if user.is_authenticated %} 
+					{% if user.id == item.author.id %}
+						<td><a href="{% url 'update_pick' item.pk %}">(Edit)</a> 
+
+						  <a href="{% url 'delete_pick' item.pk %}">(Delete)</a></td>					
+					{% endif %}						  	
+				{% endif %}			             
+			</tr>							
+		{% endfor %}
+  	</tbody>
+
+{% else %}
+
+	<h2>Sorry this page does not exist</h2>	
+	
+{% endif %}
+
+
+{% endblock %}

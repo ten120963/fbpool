@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Football Pool - Player 
+{% endblock %}
+
+{% block content %}
+
+<h1>Football Pool - Player</h1>
+<br/>	
+  	<table class="table table-borderless">
+  	<thead>	
+    <tr>
+      <th scope="col">Week</th>      
+      <th scope="col">Name</th>
+      <th scope="col">Date</th>      
+      <th scope="col">Team</th>      
+      {% if user.is_authenticated %} 
+      	<th scope="col"></th> 
+      {% endif %}
+  	  
+    </tr>
+  	</thead>
+
+  	<tbody> 	
+		{% for pick in author_posts %}			
+			<tr>	
+				<td><a href="{% url 'week_view' pick.week %}">{{ pick.week}}</a></td>						
+				<td><a href="{% url 'author_view' pick.author %}">{{ pick.author.first_name }} {{ pick.author.last_name }}</a></td>
+				<td>{{ pick.pick_date }}</td>  
+				<td><a href="{% url 'team_view' pick.team|slugify %}">{{ pick.team }}</a></td>
+				
+				{% if user.is_authenticated %} 
+					{% if user.id == pick.author.id %}
+						<td><a href="{% url 'update_pick' pick.pk %}">(Edit)</a>
+
+						  <a href="{% url 'delete_pick' pick.pk %}">(Delete)</a></td>
+					{% endif %} 				
+				{% endif %}	
+						             
+			</tr>	
+							
+		{% endfor %}
+  	</tbody>
+
+
+{% endblock %}
